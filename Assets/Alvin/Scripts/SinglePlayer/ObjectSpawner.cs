@@ -28,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    if(mainCamera.transform.position.y > 4)
+	    if(mainCamera.transform.position.y > 3)
         {
             if (initialized == false)
             {
@@ -60,7 +60,7 @@ public class ObjectSpawner : MonoBehaviour
                     }
                     else
                     {
-                        if(mainCamera.transform.position.y>initialspawnCourse + 5)
+                        if(mainCamera.transform.position.y- stageDimensions.y > initialspawnCourse + 6)
                         {
                             initialized = false;
                             spawnedCourse = false;
