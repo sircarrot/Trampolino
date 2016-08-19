@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MoveTorwardsPlayer1 : MonoBehaviour
+public class MoveTorwardsPlayer2 : MonoBehaviour
 {
     public Vector3 stageDimensions;
     public GameObject mainCamera;
     float playerPosition;
-    //public GameObject player1;
     // Use this for initialization
     void Start ()
     {
@@ -26,7 +25,7 @@ public class MoveTorwardsPlayer1 : MonoBehaviour
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             Vector2 myPostion = gameObject.GetComponent<Rigidbody2D>().position;
 
-            if (Mathf.Abs(touchPos.x - myPostion.x) >= 2)
+            if (Mathf.Abs(touchPos.x - myPostion.x) <= 2)
             {
                 myPostion.x = Mathf.Lerp(myPostion.x, touchPos.x, 10);
                 myPostion.x = Mathf.Clamp(myPostion.x, -stageDimensions.x, stageDimensions.x);
