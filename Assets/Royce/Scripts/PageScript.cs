@@ -26,9 +26,15 @@ public class PageScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        //StartCoroutine(OpeningTransition());
     }
-
+    //IEnumerator OpeningTransition()
+    //{
+    //    Transition.SetActive(true);
+    //    Transition.GetComponent<Image>().CrossFadeAlpha(0, 1f, false);
+    //    yield return new WaitForSeconds(2f);
+    //    Transition.SetActive(false);
+    //}
     // Update is called once per frame
     void Update()
     {
@@ -216,17 +222,18 @@ public class PageScript : MonoBehaviour
 
     public void MLBrick()
     {
-        StartCoroutine(MLBrickEnum());
-    }
-    IEnumerator MLBrickEnum()
-    {
-        Transition.SetActive(true);
-        Transition.GetComponent<Image>().CrossFadeAlpha(0, 0f, true);
-        Transition.GetComponent<Image>().CrossFadeAlpha(1, 1f, true);
-        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("LM Brickbreaker Master Scene");
 
+        //StartCoroutine(MLBrickEnum());
     }
+    //IEnumerator MLBrickEnum()
+    //{
+    //    //Transition.SetActive(true);
+    //    //Transition.GetComponent<Image>().CrossFadeAlpha(0, 0f, true);
+    //    //Transition.GetComponent<Image>().CrossFadeAlpha(1, 1f, true);
+    //    //yield return new WaitForSeconds(1f);
+    //    SceneManager.LoadScene("LM Brickbreaker Master Scene");
+    //}
 }
 
 
