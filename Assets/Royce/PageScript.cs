@@ -29,42 +29,42 @@ public class PageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //Swipe input
-        if (Input.GetMouseButtonDown(0))
+        if (!bounce)
         {
-            //fingerStart = touch.position;
-            //fingerEnd = touch.position;
-            fingerStart = Input.mousePosition;
-            fingerEnd = Input.mousePosition;
-        }
-        //if (touch.phase == TouchPhase.Moved)
-        if (Input.GetMouseButton(0))
-        {
-            //fingerEnd = touch.position;
-            fingerEnd = Input.mousePosition;
+            //Swipe input
+            if (Input.GetMouseButtonDown(0))
+            {
+                //fingerStart = touch.position;
+                //fingerEnd = touch.position;
+                fingerStart = Input.mousePosition;
+                fingerEnd = Input.mousePosition;
+            }
+            //if (touch.phase == TouchPhase.Moved)
+            if (Input.GetMouseButton(0))
+            {
+                //fingerEnd = touch.position;
+                fingerEnd = Input.mousePosition;
 
-            //Swipe Direction
-            if ((fingerStart.x - fingerEnd.x) > 80)
-            { pageRight(); }
-            else if ((fingerStart.x - fingerEnd.x) < -80)
-            { pageLeft(); }
+                //Swipe Direction
+                if ((fingerStart.x - fingerEnd.x) > 50)
+                { pageRight(); }
+                else if ((fingerStart.x - fingerEnd.x) < -50)
+                { pageLeft(); }
 
-            //After the checks are performed, set the fingerStart & fingerEnd to be the same
+                //After the checks are performed, set the fingerStart & fingerEnd to be the same
+            }
+            //if (touch.phase == TouchPhase.Ended)
+            if (Input.GetMouseButtonUp(0))
+            {
+                fingerStart = Vector2.zero;
+                fingerEnd = Vector2.zero;
+            }
         }
-        //if (touch.phase == TouchPhase.Ended)
-        if (Input.GetMouseButtonUp(0))
-        {
-            fingerStart = Vector2.zero;
-            fingerEnd = Vector2.zero;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(bounce)
-            { StartCoroutine(BounceDown(pagenum-1)); }
-        }
-
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (bounce)
+                { StartCoroutine(BounceDown(pagenum - 1)); }
+            }
     }
 
     public void pageLeft()
