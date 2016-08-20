@@ -33,7 +33,9 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                Destroy(col.gameObject); // Player death
+                //Destroy(col.gameObject); // Player death
+                col.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                col.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
             }
         }
     }
