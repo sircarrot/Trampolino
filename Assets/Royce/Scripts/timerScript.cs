@@ -9,7 +9,6 @@ public class timerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        timer = 20;
         gameObject.GetComponent<Text>().text = timer.ToString();
 	}
 	
