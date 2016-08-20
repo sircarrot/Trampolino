@@ -6,6 +6,7 @@ public class charaUpdateScript : MonoBehaviour {
     public Sprite IdleSprite;
     public Sprite JumpSprite;
 
+    public Pause pauseScript;
     private bool jumping = false;
     private float lasty;
     private float cury;
@@ -31,5 +32,14 @@ public class charaUpdateScript : MonoBehaviour {
             gameObject.GetComponent<SpriteRenderer>().sprite = JumpSprite;
         }
         lasty = cury;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // WILL RUN EVEN IF DEAD, BUG NEED TO BE FIXED
+            if (pauseScript.paused == false)
+            { pauseScript.pause(); }
+            else
+            { pauseScript.unPause(); }
+        }
     }
 }
