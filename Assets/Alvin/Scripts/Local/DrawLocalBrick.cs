@@ -60,8 +60,8 @@ public class DrawLocalBrick : MonoBehaviour
             switch (phase)
             {
                 case TouchPhase.Began:
-                    
-                    if (touchPos.y <= stageDimensions.y *-1 + 1)
+
+                    if (touchPos.y <= stageDimensions.y * -1 + 2)
                     {
                         if (nodrawn1 < allowedmax)
                         {
@@ -73,7 +73,7 @@ public class DrawLocalBrick : MonoBehaviour
                             createTrampoline1(touch);
                         }
                     }
-                    if (touchPos.y >= stageDimensions.y - 1)
+                    if (touchPos.y >= stageDimensions.y - 2)
                     {
 
                         if (nodrawn2 < allowedmax)
@@ -88,8 +88,8 @@ public class DrawLocalBrick : MonoBehaviour
                     }
                     break;
                 case TouchPhase.Moved:
-                    
-                    if ((touchPos.y > stageDimensions.y * -1 + 1) && !(touchPos.y > stageDimensions.y - 1))
+
+                    if ((touchPos.y > stageDimensions.y * -1 + 2) && !(touchPos.y > stageDimensions.y - 2))
                     {
                         if (clicked)
                         {
@@ -97,7 +97,7 @@ public class DrawLocalBrick : MonoBehaviour
                             release1();
                         }
                     }
-                    if ((touchPos.y < stageDimensions.y - 1) && !(touchPos.y < stageDimensions.y * -1 + 1))
+                    if ((touchPos.y < stageDimensions.y - 2) && !(touchPos.y < stageDimensions.y * -1 + 2))
                     {
                         if (clicked)
                         {
@@ -106,26 +106,26 @@ public class DrawLocalBrick : MonoBehaviour
                         }
                     }
 
-                    if (touchPos.y <= stageDimensions.y * -1 + 1)
+                    if (touchPos.y <= stageDimensions.y * -1 + 2)
                     {
                         //Debug.Log("Atas");
                         drawing1(touch);
                     }
-                    if (touchPos.y >= stageDimensions.y - 1)
+                    if (touchPos.y >= stageDimensions.y - 2)
                     {
                         //Debug.Log("Atas");
                         drawing2(touch);
                     }
                     break;
                 case TouchPhase.Ended:
-                    if (touchPos.y <= stageDimensions.y * -1 + 1)
+                    if (touchPos.y <= stageDimensions.y * -1 + 2)
                     {
                         Debug.Log("Bawah");
                         release1();
                     }
-                    if (touchPos.y >= stageDimensions.y - 1)
+                    if (touchPos.y >= stageDimensions.y - 2)
                     {
-                        
+
                         release2();
                     }
                     break;
@@ -137,7 +137,7 @@ public class DrawLocalBrick : MonoBehaviour
     public void LoopDraw1() //Destroy the first line and draw the second one if drawn is more than allowed for P1
     {
         Destroy(first1);
-        
+
         nodrawn1--;
 
     }
@@ -158,7 +158,7 @@ public class DrawLocalBrick : MonoBehaviour
         //instantiated1.GetComponent<TrampolineScript>().bounceForce = power1;
         clicked = false;
         first1 = instantiated1;
-        
+
         nodrawn1++;
     }
     public void drawing1(Touch touch)
@@ -177,26 +177,24 @@ public class DrawLocalBrick : MonoBehaviour
         {
             newScale1 = initialScale1 + (hypo1) * 0.4;
         }
-        if (hypo1 < 2)
-        {
-            instantiated1.transform.localScale = new Vector3((float)newScale1, instantiated1.transform.localScale.y, instantiated1.transform.localScale.z);
-        }
 
+        instantiated1.transform.localScale = new Vector3((float)newScale1, instantiated1.transform.localScale.y, instantiated1.transform.localScale.z);
+       
         if (newScale1 < 0.5)
         {
-            power1 = 5;
+            power1 = 10;
         }
         else if (newScale1 < 1)
         {
-            power1 = 4;
+            power1 = 8;
         }
         else if (newScale1 < 1.5)
         {
-            power1 = 3;
+            power1 = 6;
         }
         else
         {
-            power1 = 2;
+            power1 = 5;
         }
         if (opp1 != 0 && adj1 != 0)
         {
@@ -229,10 +227,10 @@ public class DrawLocalBrick : MonoBehaviour
         instantiated2.GetComponent<Collider2D>().enabled = true;
         //instantiated2.GetComponent<TrampolineScript>().bounceForce = power2;
         //Debug.Log(power);
-       
+
         clicked = false;
         first2 = instantiated2;
-        
+
         nodrawn2++;
     }
     public void drawing2(Touch touch)
@@ -251,9 +249,9 @@ public class DrawLocalBrick : MonoBehaviour
         {
             newScale2 = initialScale2 + (hypo2) * 0.4;
         }
-        
+
         instantiated2.transform.localScale = new Vector3((float)newScale2, instantiated2.transform.localScale.y, instantiated2.transform.localScale.z);
-        
+
 
         if (newScale2 < 1)
         {

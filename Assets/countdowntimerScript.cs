@@ -12,8 +12,8 @@ public class countdowntimerScript : MonoBehaviour {
 
     void Awake()
     {
-        Time.timeScale = 0;
-        StartCoroutine(StartCountdown());
+        //Time.timeScale = 0;
+        //StartCoroutine(StartCountdown());
     }
     IEnumerator StartCountdown()
     {

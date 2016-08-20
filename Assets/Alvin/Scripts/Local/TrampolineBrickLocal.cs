@@ -9,6 +9,7 @@ public class TrampolineBrickLocal : MonoBehaviour
         P1, P2
     }
     public type TrampolineType = new type();
+    public bool permanent;
     void Start()
     {
         
@@ -24,7 +25,10 @@ public class TrampolineBrickLocal : MonoBehaviour
             col.rigidbody.velocity = bounceForce * transform.up;
             else
             col.rigidbody.velocity = bounceForce * -1 * transform.up;
-            Destroy(this.gameObject);
+            if (permanent == false)
+            {
+                Destroy(this.gameObject);
+            }
 
         }
     }

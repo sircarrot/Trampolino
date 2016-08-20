@@ -45,6 +45,7 @@ public class brickPlayerScore : MonoBehaviour {
         {
             if(col.gameObject.GetComponent<brickEdgeScript>().edgeid == playerid)
             {
+                /*
                 switch (playerid)
                 {
                     case 1:
@@ -56,6 +57,7 @@ public class brickPlayerScore : MonoBehaviour {
                         player2.onChangeValue();
                         break;
                 }
+                */
             }
             else
             {
