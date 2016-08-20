@@ -11,7 +11,10 @@ public class PageScript : MonoBehaviour
     public int pagenum;
     public int maxpage;
 
-    private int frames = 15;
+    public AudioClip Swoop;
+    public AudioClip BubblePop;
+
+    private int frames = 10;
     private Vector2 fingerStart;
     private Vector2 fingerEnd;
     private bool isCoroutineExecuting = false;
@@ -48,8 +51,6 @@ public class PageScript : MonoBehaviour
             { pageLeft(); }
 
             //After the checks are performed, set the fingerStart & fingerEnd to be the same
-            //fingerStart = touch.position;
-            //fingerStart = Input.mousePosition;
         }
         //if (touch.phase == TouchPhase.Ended)
         if (Input.GetMouseButtonUp(0))
@@ -85,6 +86,8 @@ public class PageScript : MonoBehaviour
     IEnumerator MovePanels(int dir)
     {
         if (isCoroutineExecuting) { yield break; }
+
+        gameObject.GetComponent<AudioSource>().PlayOneShot(Swoop);
 
         isCoroutineExecuting = true;
         pagenum -= dir;
@@ -125,18 +128,21 @@ public class PageScript : MonoBehaviour
 
         isCoroutineExecuting = true;
 
+
         for (int i = 0; i < 3; i++)
         {
             // Move panels according to direction
             Content.transform.localPosition += new Vector3(0, -50 / 3, 0);
             yield return new WaitForEndOfFrame();
         }
+
         for (int i = 0; i < 15; i++)
         {
             // Move panels according to direction
             Content.transform.localPosition += new Vector3(0, 900 / 15, 0);
             yield return new WaitForEndOfFrame();
         }
+
 
         SecondMenu[page].SetActive(true);
         for (int i = 0; i < 10; i++)
@@ -145,9 +151,12 @@ public class PageScript : MonoBehaviour
             SecondMenu[page].transform.localScale += new Vector3(0.9f / 10f, 0.9f / 10f, 0);
             SecondMenuButtons[page * 2].transform.localPosition += new Vector3( -300 / 10,0,0);
             SecondMenuButtons[page * 2 + 1].transform.localPosition += new Vector3(300 / 10, 0, 0);
+            if (i == 7) { gameObject.GetComponent<AudioSource>().PlayOneShot(BubblePop); }
 
             yield return new WaitForEndOfFrame();
         }
+        gameObject.GetComponent<AudioSource>().PlayOneShot(BubblePop);
+
 
         bounce = true;
 
@@ -159,6 +168,8 @@ public class PageScript : MonoBehaviour
 
         isCoroutineExecuting = true;
 
+        gameObject.GetComponent<AudioSource>().PlayOneShot(BubblePop);
+
         for (int i = 0; i < 10; i++)
         {
             SecondMenu[page].transform.localPosition += new Vector3(0, 900 / 10, 0);
@@ -166,8 +177,11 @@ public class PageScript : MonoBehaviour
             SecondMenuButtons[page * 2].transform.localPosition += new Vector3(300 / 10, 0, 0);
             SecondMenuButtons[page * 2 + 1].transform.localPosition += new Vector3(-300 / 10, 0, 0);
 
+            if (i == 4)
+            { gameObject.GetComponent<AudioSource>().PlayOneShot(BubblePop); }
             yield return new WaitForEndOfFrame();
         }
+
 
         SecondMenu[page].SetActive(false);
 
@@ -184,6 +198,7 @@ public class PageScript : MonoBehaviour
             Content.transform.localPosition += new Vector3(0, 50 / 3, 0);
             yield return new WaitForEndOfFrame();
         }
+
 
         bounce = false;
 
