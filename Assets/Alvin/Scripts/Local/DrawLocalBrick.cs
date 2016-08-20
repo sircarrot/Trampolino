@@ -184,19 +184,19 @@ public class DrawLocalBrick : MonoBehaviour
 
         if (newScale1 < 0.5)
         {
-            power1 = 10;
+            power1 = 5;
         }
         else if (newScale1 < 1)
         {
-            power1 = 8;
+            power1 = 4;
         }
         else if (newScale1 < 1.5)
         {
-            power1 = 6;
+            power1 = 3;
         }
         else
         {
-            power1 = 5;
+            power1 = 2;
         }
         if (opp1 != 0 && adj1 != 0)
         {

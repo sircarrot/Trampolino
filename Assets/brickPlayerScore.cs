@@ -36,6 +36,7 @@ public class brickPlayerScore : MonoBehaviour {
                         player2.onChangeValue();
                         break;
                 }
+                StartCoroutine(DestroyBrick(col.gameObject));
             }
         }
 
@@ -62,14 +63,19 @@ public class brickPlayerScore : MonoBehaviour {
                 {
                     case 1:
                         player2.score--;
+                        player2.onChangeValue();
                         break;
                     case 2:
                         player1.score--;
+                        player1.onChangeValue();
                         break;
                 }
             }
         }
-
-
+    }
+    IEnumerator DestroyBrick(GameObject Brick)
+    {
+        yield return new WaitForSeconds(0.05f);
+        Destroy(Brick);
     }
 }

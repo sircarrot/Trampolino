@@ -6,11 +6,32 @@ public class countdowntimerScript : MonoBehaviour {
 
     public Text LargeCountdownTime;
     public float timer;
-    public bool ingame = true;
+    public bool ingame = false;
 
     private bool isCoroutineExecuting = false;
 
-
+    void Awake()
+    {
+        Time.timeScale = 0;
+        StartCoroutine(StartCountdown());
+    }
+    IEnumerator StartCountdown()
+    {
+        yield return new WaitForSeconds(3f);
+        for (int i = 3; i > 0; i--)
+        {
+            LargeCountdownTime.text = i.ToString();
+            LargeCountdownTime.CrossFadeAlpha(1, 0f, true);
+            LargeCountdownTime.CrossFadeAlpha(0, 1f, true);
+            float pausedtime = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup - pausedtime <= 1)
+            { yield return null; }
+        }
+        LargeCountdownTime.text = "START";
+        LargeCountdownTime.CrossFadeAlpha(1f, 0f, true);
+        LargeCountdownTime.CrossFadeAlpha(0f, 1f, true);
+        yield return new WaitForSeconds(1f);
+    }
     // Use this for initialization
     void Start () {
 	    
@@ -47,7 +68,7 @@ public class countdowntimerScript : MonoBehaviour {
         }
         gameObject.GetComponent<Text>().text = "0:00";
         LargeCountdownTime.text = "TIME UP";
-        LargeCountdownTime.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        //LargeCountdownTime.transform.localScale = new Vector3(0.5f, 0.5f, 1);
         LargeCountdownTime.CrossFadeAlpha(1f, 0f, true);
         yield return new WaitForSeconds(2f);
         LargeCountdownTime.CrossFadeAlpha(0f, 1f, true);
