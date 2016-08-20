@@ -28,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    if(mainCamera.transform.position.y > 3)
+	    if(mainCamera.transform.position.y > 5)
         {
             if (initialized == false)
             {
@@ -53,14 +53,14 @@ public class ObjectSpawner : MonoBehaviour
                 {
                     if(spawnedCourse == false)
                     {
-                        spawnPos = new Vector3(0, mainCamera.transform.position.y+ stageDimensions.y, -0.1f);
+                        spawnPos = new Vector3(0, mainCamera.transform.position.y+ stageDimensions.y+2, -0.1f);
                         spawnedCourse = true;
                         Instantiate(Courses[courseType], spawnPos , Quaternion.identity);
                         initialspawnCourse = mainCamera.transform.position.y + stageDimensions.y;
                     }
                     else
                     {
-                        if(mainCamera.transform.position.y- stageDimensions.y > initialspawnCourse + 6)
+                        if(mainCamera.transform.position.y- stageDimensions.y > initialspawnCourse + stageDimensions.y*2)
                         {
                             initialized = false;
                             spawnedCourse = false;
