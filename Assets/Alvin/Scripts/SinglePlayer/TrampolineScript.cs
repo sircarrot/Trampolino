@@ -31,6 +31,7 @@ public class TrampolineScript : MonoBehaviour {
                 else if(_gameMaster.second == this.gameObject)
                 {
                     _gameMaster.second = _gameMaster.third;
+                    _gameMaster.third = _gameMaster.fourth;
                 }
                 else if (_gameMaster.third == this.gameObject)
                 {
