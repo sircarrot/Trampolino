@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class countdowntimerScript : MonoBehaviour {
 
+    public GameObject Transition;
     public GameObject EndGameCanvas;
     public GameObject PauseCanvas;
     public brickPlayerScore PlayerScore;
@@ -21,15 +23,22 @@ public class countdowntimerScript : MonoBehaviour {
 
     void Awake()
     {
-        //Time.timeScale = 0;
-        //StartCoroutine(StartCountdown());
+        //Transition.SetActive(true);
+        Time.timeScale = 0;
+        StartCoroutine(StartCountdown());
     }
     IEnumerator StartCountdown()
     {
+
         //2 seconds before start
         float pausedtime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - pausedtime <= 2)
+        while (Time.realtimeSinceStartup - pausedtime <= 1)
         { yield return null; }
+        //Transition.GetComponent<Image>().CrossFadeAlpha(0, 1f, true);
+        //pausedtime = Time.realtimeSinceStartup;
+        //while (Time.realtimeSinceStartup - pausedtime <= 1)
+        //{ yield return null; }
+        //Transition.SetActive(false);
 
         //Countdown starts
         for (int i = 3; i > 0; i--)
@@ -155,5 +164,18 @@ public class countdowntimerScript : MonoBehaviour {
         LargeCountdownTime.CrossFadeAlpha(1f, 0f, true);
         LargeCountdownTime.CrossFadeAlpha(0f, 1f, true);
         yield return new WaitForSeconds(1f);
+    }
+    public void MainMenu()
+    {
+        StartCoroutine(MainMenuCoroutine());
+    }
+    IEnumerator MainMenuCoroutine()
+    {
+        //Transition.SetActive(true);
+        //Transition.GetComponent<Image>().CrossFadeAlpha(1, 1f, true);
+        float pausedtime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - pausedtime <= 1)
+        { yield return null; }
+        SceneManager.LoadScene("MainScene");
     }
 }

@@ -33,13 +33,13 @@ public class charaUpdateScript : MonoBehaviour {
         }
         lasty = cury;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // WILL RUN EVEN IF DEAD, BUG NEED TO BE FIXED
-            if (pauseScript.paused == false)
-            { pauseScript.pause(); }
-            else
-            { pauseScript.unPause(); }
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    // WILL RUN EVEN IF DEAD, BUG NEED TO BE FIXED
+        //    if (pauseScript.paused == false)
+        //    { pauseScript.pause(); }
+        //    else
+        //    { pauseScript.unPause(); }
+        //}
     }
 }
