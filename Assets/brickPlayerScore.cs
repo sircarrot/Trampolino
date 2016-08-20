@@ -48,9 +48,11 @@ public class brickPlayerScore : MonoBehaviour {
                 {
                     case 1:
                         player1.score--;
+                        player1.onChangeValue();
                         break;
                     case 2:
                         player2.score--;
+                        player2.onChangeValue();
                         break;
                 }
             }
