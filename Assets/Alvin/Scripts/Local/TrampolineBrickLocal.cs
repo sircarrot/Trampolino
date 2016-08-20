@@ -4,7 +4,11 @@ using System.Collections;
 public class TrampolineBrickLocal : MonoBehaviour
 {
     public float bounceForce = 10;
-    
+    public enum type
+    {
+        P1, P2
+    }
+    public type TrampolineType = new type();
     void Start()
     {
         
@@ -16,9 +20,10 @@ public class TrampolineBrickLocal : MonoBehaviour
 
         if (col.gameObject.tag == "Player")
         {
-            //col.rigidbody.AddForce(bounceForce * transform.up, ForceMode.VelocityChange);
+            if(TrampolineType == type.P1)
             col.rigidbody.velocity = bounceForce * transform.up;
-            
+            else
+            col.rigidbody.velocity = bounceForce * -1 * transform.up;
             Destroy(this.gameObject);
 
         }
