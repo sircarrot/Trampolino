@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PageScript : MonoBehaviour
@@ -7,6 +9,7 @@ public class PageScript : MonoBehaviour
     public GameObject Content;
     public GameObject[] SecondMenu;
     public GameObject[] SecondMenuButtons;
+    public GameObject Transition;
 
     public int pagenum;
     public int maxpage;
@@ -209,6 +212,20 @@ public class PageScript : MonoBehaviour
         yield return StartCoroutine(BounceDown(pagenum-1));
         yield return StartCoroutine(MovePanels(dir));
         yield return StartCoroutine(BounceUp(page));
+    }
+
+    public void MLBrick()
+    {
+        StartCoroutine(MLBrickEnum());
+    }
+    IEnumerator MLBrickEnum()
+    {
+        Transition.SetActive(true);
+        Transition.GetComponent<Image>().CrossFadeAlpha(0, 0f, true);
+        Transition.GetComponent<Image>().CrossFadeAlpha(1, 1f, true);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("LM Brickbreaker Master Scene");
+
     }
 }
 
