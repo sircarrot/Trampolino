@@ -26,7 +26,7 @@ public class charaDeath : MonoBehaviour {
             //Play death sound
             yield return new WaitForSeconds(1f);
             GameOverCanvas.SetActive(true);
-            Score.text = MainCamera.transform.position.y.ToString(".00");
+            Score.text = MainCamera.transform.position.y.ToString("0");
         }
 }
 
