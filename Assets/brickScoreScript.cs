@@ -7,7 +7,7 @@ public class brickScoreScript : MonoBehaviour {
     public int score;
 
 
-    public void onChangeValue()
+    public void update()
     {
         gameObject.GetComponent<Text>().text = score.ToString();
     }

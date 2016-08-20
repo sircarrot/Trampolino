@@ -26,12 +26,22 @@ public class FlipGravityScript : MonoBehaviour {
 	    if(transform.position.y>(1/2)*stageDimensions.y)
         {
             if(!location)
-            GetComponent<Rigidbody2D>().gravityScale = GetComponent<Rigidbody2D>().gravityScale * -1;
+            {
+                GetComponent<Rigidbody2D>().gravityScale = GetComponent<Rigidbody2D>().gravityScale * -1;
+                location = true;
+                this.gameObject.transform.Rotate(new Vector3(0, 0, 180));
+            }
+            
         }
         else
         {
             if(location)
-            GetComponent<Rigidbody2D>().gravityScale = GetComponent<Rigidbody2D>().gravityScale * -1;
+            {
+                GetComponent<Rigidbody2D>().gravityScale = GetComponent<Rigidbody2D>().gravityScale * -1;
+                location = false;
+                this.gameObject.transform.Rotate(new Vector3(0, 0, 180));
+            }
+           
         }
 	}
 }
