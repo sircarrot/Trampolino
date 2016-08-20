@@ -5,7 +5,7 @@ using System.Collections;
 public class charaDeath : MonoBehaviour {
 
     public GameObject MainCamera;
-    //public bool dead = false;
+    public bool dead = false;
     public GameObject GameOverCanvas;
     public Text Score;
     // Use this for initialization
@@ -17,6 +17,7 @@ public class charaDeath : MonoBehaviour {
     void Update() {
         if (MainCamera.transform.position.y - gameObject.transform.position.y > 4.5f)
         {
+            dead = true;
             StartCoroutine(WaitDeath());
         }
     }
