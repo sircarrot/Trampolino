@@ -33,7 +33,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                Destroy(col.gameObject);
+                Destroy(col.gameObject); // Player death
             }
         }
     }
