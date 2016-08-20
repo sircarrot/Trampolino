@@ -57,7 +57,7 @@ public class DrawLineLocal : MonoBehaviour
             {
                 case TouchPhase.Began:
                     
-                    if (Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 4)
+                    if (Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 3.8)
                     {
                         
                         if (nodrawn1 < allowedmax)
@@ -70,7 +70,7 @@ public class DrawLineLocal : MonoBehaviour
                             createTrampoline1(touch);
                         }
                     }
-                    if (Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 4)
+                    if (Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 3.8)
                     {
                         
                         if (nodrawn2 < allowedmax)
@@ -86,7 +86,7 @@ public class DrawLineLocal : MonoBehaviour
                     break;
                 case TouchPhase.Moved:
                     
-                    if ((Mathf.Abs(touchPos.y - myPostion.y) <= 0.8 || Mathf.Abs(touchPos.y - myPostion.y) >= 4) && !(Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 4))
+                    if ((Mathf.Abs(touchPos.y - myPostion.y) <= 0.8 || Mathf.Abs(touchPos.y - myPostion.y) >= 3.8) && !(Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 3.8))
                     {
                         if(clicked)
                         {
@@ -94,7 +94,7 @@ public class DrawLineLocal : MonoBehaviour
                             release1();
                         }
                     }
-                    if((Mathf.Abs(touchPos.y - myPostion2.y) <= 0.8 || Mathf.Abs(touchPos.y - myPostion2.y) >= 4) && !(Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 4))
+                    if((Mathf.Abs(touchPos.y - myPostion2.y) <= 0.8 || Mathf.Abs(touchPos.y - myPostion2.y) >= 3.8) && !(Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 3.8))
                     {
                         if (clicked)
                         {
@@ -102,23 +102,23 @@ public class DrawLineLocal : MonoBehaviour
                         }
                     }
 
-                    if (Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 4)
+                    if (Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 3.8)
                     {
                         //Debug.Log("Atas");
                         drawing1(touch);
                     }
-                    if (Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 4)
+                    if (Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 3.8)
                     {
                         Debug.Log("Bawah");
                         drawing2(touch);
                     }
                     break;
                 case TouchPhase.Ended:
-                    if (Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 4)
+                    if (Mathf.Abs(touchPos.y - myPostion.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion.y) <= 3.8)
                     {
                         release1();
                     }
-                    if (Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 4)
+                    if (Mathf.Abs(touchPos.y - myPostion2.y) >= 0.8 && Mathf.Abs(touchPos.y - myPostion2.y) <= 3.8)
                     {
                         release2();
                     }

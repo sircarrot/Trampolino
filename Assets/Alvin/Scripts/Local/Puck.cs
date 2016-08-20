@@ -21,7 +21,7 @@ public class Puck : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            col.gameObject.SetActive(false);
+            //col.gameObject.SetActive(false);
         }
     }
 }
