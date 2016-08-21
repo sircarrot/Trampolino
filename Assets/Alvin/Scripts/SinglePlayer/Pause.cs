@@ -10,7 +10,7 @@ public class Pause : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        Time.timeScale = 1;
 	}
 	
 	// Update is called once per frame
@@ -58,6 +58,12 @@ public class Pause : MonoBehaviour {
         CountdownScreen.CrossFadeAlpha(0, 1f, true);
         yield return new WaitForSeconds(1f);
         CountdownScreen.text = "";
+    }
+
+    public void MainMenu()
+    {
+        //Main Menu
+        Application.LoadLevel(0);
     }
 
 }

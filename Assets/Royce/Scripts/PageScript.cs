@@ -220,10 +220,25 @@ public class PageScript : MonoBehaviour
         yield return StartCoroutine(BounceUp(page));
     }
 
+    public void SingleJumper()
+    {
+        Application.LoadLevel(1);
+    }
+    public void SingleBrick()
+    {
+        Application.LoadLevel(2);
+    }
+
     public void MLBrick()
     {
-        SceneManager.LoadScene("LM Brickbreaker Master Scene");
-
+        //SceneManager.LoadScene("LM Brickbreaker Master Scene");
+        Application.LoadLevel(3);
+        //StartCoroutine(MLBrickEnum());
+    }
+    public void MLPong()
+    {
+        //SceneManager.LoadScene("LM Brickbreaker Master Scene");
+        Application.LoadLevel(4);
         //StartCoroutine(MLBrickEnum());
     }
     //IEnumerator MLBrickEnum()

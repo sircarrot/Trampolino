@@ -1,76 +1,102 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class brickPlayerScore : MonoBehaviour {
+public class brickPlayerScore : MonoBehaviour
+{
 
     public int playerid;
 
     public brickScoreScript player1;
     public brickScoreScript player2;
 
+    public bool pong = false;
+
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     void OnCollisionEnter2D(Collision2D col)
     {
-        //Brick
-        if (col.gameObject.tag == "Brick")
+        if (pong)
         {
-            col.gameObject.GetComponent<brickBrickScript>().life--;
-            if (col.gameObject.GetComponent<brickBrickScript>().life == 0)
+            //Edge Screen
+            if (col.gameObject.tag == "Edge")
             {
-                switch(playerid)
+                switch (col.gameObject.GetComponent<brickEdgeScript>().edgeid)
                 {
                     case 1:
-                        player1.score += col.gameObject.GetComponent<brickBrickScript>().score;
-                        player1.onChangeValue();
-                        break;
-                    case 2:
-                        player2.score += col.gameObject.GetComponent<brickBrickScript>().score;
+                        player2.score++;
                         player2.onChangeValue();
                         break;
+                    case 2:
+                        player1.score++;
+                        player1.onChangeValue();
+                        break;
                 }
-                StartCoroutine(DestroyBrick(col.gameObject));
             }
         }
-
-        //Edge Screen
-        if (col.gameObject.tag == "Edge")
+        else
         {
-            if(col.gameObject.GetComponent<brickEdgeScript>().edgeid == playerid)
+            //Brick
+            if (col.gameObject.tag == "Brick")
             {
-                /*
-                switch (playerid)
+                col.gameObject.GetComponent<brickBrickScript>().life--;
+                if (col.gameObject.GetComponent<brickBrickScript>().life == 0)
                 {
-                    case 1:
-                        player1.score--;
-                        player1.onChangeValue();
-                        break;
-                    case 2:
-                        player2.score--;
-                        player2.onChangeValue();
-                        break;
+                    switch (playerid)
+                    {
+                        case 1:
+                            player1.score += col.gameObject.GetComponent<brickBrickScript>().score;
+                            player1.onChangeValue();
+                            break;
+                        case 2:
+                            player2.score += col.gameObject.GetComponent<brickBrickScript>().score;
+                            player2.onChangeValue();
+                            break;
+                    }
+                    StartCoroutine(DestroyBrick(col.gameObject));
                 }
-                */
             }
-            else
+
+            //Edge Screen
+            if (col.gameObject.tag == "Edge")
             {
-                switch (playerid)
+                if (col.gameObject.GetComponent<brickEdgeScript>().edgeid == playerid)
                 {
-                    case 1:
-                        player2.score--;
-                        player2.onChangeValue();
-                        break;
-                    case 2:
-                        player1.score--;
-                        player1.onChangeValue();
-                        break;
+                    /*
+                    switch (playerid)
+                    {
+                        case 1:
+                            player1.score--;
+                            player1.onChangeValue();
+                            break;
+                        case 2:
+                            player2.score--;
+                            player2.onChangeValue();
+                            break;
+                    }
+                    */
+                }
+                else
+                {
+                    switch (playerid)
+                    {
+                        case 1:
+                            player2.score--;
+                            player2.onChangeValue();
+                            break;
+                        case 2:
+                            player1.score--;
+                            player1.onChangeValue();
+                            break;
+                    }
                 }
             }
         }
