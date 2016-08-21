@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class countdowntimerScript : MonoBehaviour {
+public class countdowntimerScript : MonoBehaviour
+{
 
     public GameObject Transition;
     public GameObject EndGameCanvas;
@@ -17,7 +18,7 @@ public class countdowntimerScript : MonoBehaviour {
     public Text LargeCountdownTime;
     public float timer;
     public bool ingame = false;
-
+    public bool singleplayer = false;
 
     private bool isCoroutineExecuting = false;
 
@@ -60,12 +61,14 @@ public class countdowntimerScript : MonoBehaviour {
         yield return new WaitForSeconds(1f);
     }
     // Use this for initialization
-    void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (ingame)
         {
             timer -= Time.deltaTime;
@@ -109,29 +112,39 @@ public class countdowntimerScript : MonoBehaviour {
 
 
         EndGameCanvas.SetActive(true);
-        if(PlayerScore.player1.score>PlayerScore.player2.score)
+        if (singleplayer)
         {
-            P1.text = "WINNER";
-            P2.text = "LOSER";
-            RetryButton.transform.localPosition += new Vector3(0,680,0);
-        }
-        else if (PlayerScore.player1.score < PlayerScore.player2.score)
-        {
-            P2.text = "WINNER";
-            P1.text = "LOSER";
-            RetryButton.transform.localPosition += new Vector3(0, -680, 0);
+            if (PlayerScore.player1.score == 90)
+            { P1.text = "YOU WIN"; }
+            else
+            { P1.text = "YOU LOSE"; }
         }
         else
         {
-            P1.text = "TIE";
-            P2.text = "TIE";
+            if (PlayerScore.player1.score > PlayerScore.player2.score)
+            {
+                P1.text = "WINNER";
+                P2.text = "LOSER";
+                //RetryButton.transform.localPosition += new Vector3(0, 680, 0);
+            }
+            else if (PlayerScore.player1.score < PlayerScore.player2.score)
+            {
+                P2.text = "WINNER";
+                P1.text = "LOSER";
+                //RetryButton.transform.localPosition += new Vector3(0, -680, 0);
+            }
+            else
+            {
+                P1.text = "TIE";
+                P2.text = "TIE";
+            }
         }
 
 
 
         isCoroutineExecuting = false;
     }
-    
+
     public void pause()
     {
         Time.timeScale = 0;
@@ -142,7 +155,7 @@ public class countdowntimerScript : MonoBehaviour {
     {
         PauseCanvas.SetActive(false);
 
-        StartCoroutine(UnpauseCountdown());        
+        StartCoroutine(UnpauseCountdown());
     }
     IEnumerator UnpauseCountdown()
     {
@@ -165,17 +178,24 @@ public class countdowntimerScript : MonoBehaviour {
         LargeCountdownTime.CrossFadeAlpha(0f, 1f, true);
         yield return new WaitForSeconds(1f);
     }
+    //public void MainMenu()
+    //{
+    //    StartCoroutine(MainMenuCoroutine());
+    //}
+    //IEnumerator MainMenuCoroutine()
+    //{
+    //    //Transition.SetActive(true);
+    //    //Transition.GetComponent<Image>().CrossFadeAlpha(1, 1f, true);
+    //    float pausedtime = Time.realtimeSinceStartup;
+    //    while (Time.realtimeSinceStartup - pausedtime <= 1)
+    //    { yield return null; }
+    //    //SceneManager.LoadScene("MainScene");
+    //    //Main Menu
+    //    Application.LoadLevel(0);
+    //}
     public void MainMenu()
     {
-        StartCoroutine(MainMenuCoroutine());
-    }
-    IEnumerator MainMenuCoroutine()
-    {
-        //Transition.SetActive(true);
-        //Transition.GetComponent<Image>().CrossFadeAlpha(1, 1f, true);
-        float pausedtime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - pausedtime <= 1)
-        { yield return null; }
-        SceneManager.LoadScene("MainScene");
+        //Main Menu
+        Application.LoadLevel(0);
     }
 }
